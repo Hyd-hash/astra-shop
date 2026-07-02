@@ -1,7 +1,0 @@
-1. Extract this ZIP on your computer.
-2. Open the extracted folder.
-3. Upload ALL items inside this folder to the root of your GitHub repository.
-4. Do not upload this ZIP itself.
-5. The GitHub repository root should contain: .github, src, pom.xml, README.md.
-6. After committing, open Actions and wait for the newest Build AstraShop run.
-7. When it is green, download AstraShop-jar from the Artifacts section.
