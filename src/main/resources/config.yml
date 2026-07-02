@@ -1,0 +1,60 @@
+# =========================================================
+#  AstraShop - Astra Network
+#  Pink & purple GUI shop, hybrid dynamic/fixed pricing.
+# =========================================================
+
+# Text supports MiniMessage tags, e.g.:
+#   "<gradient:#ff6ec7:#a260ff>Astra Shop</gradient>"
+# and legacy '&' color codes, both are accepted everywhere.
+prefix: "<gradient:#ff6ec7:#a260ff><b>Astra</b>Shop</gradient> <dark_gray>»</dark_gray> "
+
+gui:
+  main-title: "<gradient:#ff6ec7:#a260ff><b>Astra Network</b></gradient> <white>Shop"
+  category-title: "<gradient:#ff9ee6:#b388ff>{category}</gradient>"
+  main-rows: 3
+  category-rows: 6
+  # Material used for decorative filler panes in empty slots.
+  filler-item: PURPLE_STAINED_GLASS_PANE
+  # Whether to also show a bright pink pane as a secondary accent stripe.
+  accent-item: PINK_STAINED_GLASS_PANE
+
+# ---------------------------------------------------------
+# Hybrid pricing engine.
+# Each item in shops.yml can set `dynamic: true` to use this
+# engine, or `dynamic: false` to always use its fixed prices.
+# ---------------------------------------------------------
+dynamic-pricing:
+  enabled: true
+  # How much the price multiplier shifts per single unit traded.
+  # 0.001 = 0.1% per item bought/sold.
+  step-per-unit: 0.001
+  # Multiplier bounds relative to the item's base price.
+  min-multiplier: 0.25
+  max-multiplier: 4.0
+  # How much of the buy price the sell price is worth, e.g. 0.75 = 75%.
+  # This keeps the shop's spread profitable/balanced like a real market.
+  sell-margin: 0.75
+  # Prices slowly drift back toward the base price over time so the
+  # market recovers after big buy/sell spikes.
+  regen:
+    enabled: true
+    interval-seconds: 300
+    # Fraction of the gap back to 1.0x multiplier recovered each interval.
+    step: 0.05
+
+# How often (seconds) runtime price/stock data is autosaved to data.yml.
+autosave-interval-seconds: 300
+
+# Cooldown (ms) between transactions per player, to deter click-spam
+# exploiting price movement. 0 disables it.
+transaction-cooldown-ms: 150
+
+# Economy behaviour
+economy:
+  # Deny purchases that would leave the player with less than this balance.
+  min-balance-after-purchase: 0.0
+  # Round all prices to this many decimal places.
+  price-decimals: 2
+
+messages-file: messages.yml
+shops-file: shops.yml
